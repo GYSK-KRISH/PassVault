@@ -1,113 +1,99 @@
-# PASSVAULT: School Computer Setup
+# PASSVAULT: Setup & Troubleshooting Guide
 
-Use these 10 steps on the school computer. You need permission to install Python packages and MySQL. If the school computer is restricted, ask the teacher or lab administrator to perform the installation steps.
+Use these steps to set up, configure, and run **PassVault** on a local computer or school lab machine.
 
-## 10 Steps
+> [!IMPORTANT]
+> **Application Type Notice:** PassVault is a **Python Tkinter Desktop Window Application**, NOT a web app. When you run `python app.py`, it launches a native desktop window on your screen/taskbar. It does **not** host a web server or open a browser tab.
 
-1. **Copy the project folder**
+---
 
-   Copy the complete project folder to the school computer. Keep these files together:
+## Quick Setup Steps
 
-   - `app.py`
-   - `database.sql`
-   - `requirements.txt`
+### 1. Copy the Project Files
+Ensure all project files are kept together in your workspace folder:
+- `app.py`
+- `database.sql`
+- `requirements.txt`
+- `test_connection.py`
 
-2. **Install Python 3**
-
-   Install Python 3 from the approved school software source. During installation, enable **Add Python to PATH** if that option is available.
-
-   Test it in PowerShell:
-
-   ```powershell
-   python --version
-   ```
-
-3. **Open PowerShell in the project folder**
-
-   In VS Code, open the project folder. Then open **Terminal > New Terminal**. The terminal path should end with the project folder name.
-
-4. **Install the Python packages**
-
-   Run:
-
-   ```powershell
-   python -m pip install -r requirements.txt
-   ```
-
-   This installs MySQL Connector, Pandas, and Matplotlib. Tkinter normally comes with Python on Windows.
-
-5. **Install or start MySQL Server**
-
-   Start the MySQL service from MySQL Workbench or Windows Services. The service must be running before PASSVAULT can connect.
-
-   The default local host is `localhost` and the default MySQL user in this project is `root`.
-
-6. **Create the database**
-
-   Open `database.sql` in MySQL Workbench and execute the complete script. It creates the database `passvault_db` and the table `credentials`.
-
-7. **Find the school MySQL password**
-
-   Ask the teacher or lab administrator for the MySQL password for the school computer. Do not guess it and do not publish it in the project files.
-
-8. **Configure the school MySQL settings**
-
-   Do not write the MySQL password inside `app.py`. Set these environment variables in the same PowerShell window before starting the application:
-
-   ```powershell
-   $env:PASSVAULT_DB_HOST = "localhost"
-   $env:PASSVAULT_DB_USER = "root"
-   $env:PASSVAULT_DB_PASSWORD = "SCHOOL_MYSQL_PASSWORD"
-   $env:PASSVAULT_DB_NAME = "passvault_db"
-   ```
-
-   Replace `SCHOOL_MYSQL_PASSWORD` with the real local MySQL password. If the school gives you a different username or host, change those values too. These settings last for the current PowerShell window only.
-
-9. **Test the application**
-
-   Run:
-
-   ```powershell
-   python app.py
-   ```
-
-   Generate a test password, save a dummy credential, refresh the table, and open analytics. Use fake data only for a school demonstration.
-
-10. **Clean up before presenting or submitting**
-
-    Delete test records containing personal information. Do not submit or share the real MySQL password. If `app.py` contains a school password, replace it with a placeholder before sharing the project outside the school computer.
-
-## What normally changes at school?
-
-Usually, only this environment variable changes:
+### 2. Verify Python 3 Installation
+Ensure Python 3 is installed and added to your system PATH. Test it in PowerShell:
 
 ```powershell
-$env:PASSVAULT_DB_PASSWORD = "SCHOOL_MYSQL_PASSWORD"
+python --version
 ```
 
-If MySQL was installed with another account, also change:
+### 3. Open PowerShell in VS Code
+In VS Code, open the project folder and open a new terminal (**Terminal > New Terminal**). Ensure the terminal path points to the project folder.
+
+### 4. Install Required Python Packages
+Run the following command to install the required libraries (`mysql-connector-python`, `pandas`, `matplotlib`):
 
 ```powershell
-$env:PASSVAULT_DB_USER = "school_mysql_user"
+python -m pip install -r requirements.txt
 ```
 
-If MySQL is running on another computer, change:
+*(Note: `tkinter` comes pre-installed with standard Python distributions on Windows).*
+
+### 5. Start MySQL Server & Import Database
+1. Make sure your local MySQL service is running (via MySQL Workbench or Windows Services).
+2. Open `database.sql` in **MySQL Workbench** and execute the entire script (click the **Lightning Bolt** icon).
+3. This creates the database `passvault_db` and the `credentials` table.
+
+### 6. Configure MySQL Environment Variables
+Set your local MySQL credentials in your PowerShell terminal before launching the application:
 
 ```powershell
-$env:PASSVAULT_DB_HOST = "computer-name-or-ip"
+$env:PASSVAULT_DB_HOST = "localhost"
+$env:PASSVAULT_DB_USER = "root"
+$env:PASSVAULT_DB_PASSWORD = "YOUR_MYSQL_PASSWORD"
+$env:PASSVAULT_DB_NAME = "passvault_db"
 ```
 
-For a normal single-computer setup, keep `host` as `localhost`.
+> **Note:** Replace `YOUR_MYSQL_PASSWORD` with your actual MySQL Workbench password.
 
-## Common errors
+### 7. Test Database Connection
+Run the connection helper script to verify your database settings before launching the GUI:
 
-- **`python is not recognized`**: Python is not installed or was not added to PATH. Reopen VS Code after installation, or use the full Python executable path.
-- **`No module named mysql`**: Run `python -m pip install -r requirements.txt` again.
-- **`Unknown database 'passvault_db'`**: Execute `database.sql` in MySQL Workbench.
-- **`Access denied for user`**: Check the MySQL username and password in `DB_CONFIG`.
-- **`Can't connect to MySQL server`**: Start the MySQL service and try again.
-- **The window opens but charts fail**: Save at least one dummy credential before selecting **View Analytics**.
+```powershell
+python test_connection.py
+```
 
-## Important school safety note
+If successful, you will see `SUCCESS! Connected to database 'passvault_db'` and `'credentials' table is present and ready!`.
 
-This is a classroom demonstration. The project uses Base64 encoding, which is not encryption. Use dummy usernames, emails, and passwords during the demonstration.
+### 8. Run the Application
+In the same terminal window, launch the app:
+
+```powershell
+python app.py
+```
+
+Check your Windows desktop or taskbar for the window titled **PassVault | Credential Manager & Security Analyzer**.
+
+---
+
+## Common Configuration Scenarios
+
+| Environment | Variable Setup |
+| :--- | :--- |
+| **Default (Local Machine)** | `$env:PASSVAULT_DB_PASSWORD = "your_mysql_password"` |
+| **Custom User** | `$env:PASSVAULT_DB_USER = "school_user"` |
+| **Remote Host** | `$env:PASSVAULT_DB_HOST = "192.168.1.100"` |
+
+---
+
+## Common Errors & Troubleshooting
+
+- **`python is not recognized`**: Python is not installed or was not added to system PATH. Re-install Python and select *Add Python to PATH*.
+- **`No module named mysql`**: Re-run `python -m pip install -r requirements.txt`.
+- **`Access denied for user 'root'@'localhost'`**: The MySQL password set in `$env:PASSVAULT_DB_PASSWORD` is incorrect or missing. Run `python test_connection.py` to test your password interactively.
+- **`Unknown database 'passvault_db'`**: Run `database.sql` in MySQL Workbench to create the database schema.
+- **`Can't connect to MySQL server`**: Ensure the MySQL service is started in Windows Services or MySQL Workbench.
+- **Browser tab opens but displays nothing**: Close the browser tab. `PassVault` is a native desktop window app, not a web page. Look for the window on your taskbar.
+
+---
+
+## Presentation & Demonstration Notes
+
+1. **Security Disclaimer**: This project uses Base64 encoding for educational demonstration purposes. Base64 is encoding, not cryptographic encryption. Always use sample/dummy usernames and passwords for school demonstrations.
+2. **Clean Up**: Before submitting or presenting your project, delete test credentials and ensure no real passwords or secret database credentials remain hardcoded in `app.py`.

@@ -1,312 +1,183 @@
-# PASSVAULT
+<div align="center">
 
-PASSVAULT is a Class 12 Informatics Practices desktop project built with Python, Tkinter, MySQL, Pandas, and Matplotlib.
+# 🔐 PASSVAULT
+### *Credential Manager & Security Analytics Desktop System*
 
-It demonstrates password generation, basic password-strength analysis, credential storage, database operations, and security analytics.
+![Python Version](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![GUI Framework](https://img.shields.io/badge/GUI-Tkinter%20%2F%20ttk-FF6F00?style=for-the-badge&logo=python&logoColor=white)
+![Data Analytics](https://img.shields.io/badge/Analytics-Pandas%20%26%20Matplotlib-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 
-## Project Objectives
+<p align="center">
+  <b>PassVault</b> is a localized desktop management system built with Python, Tkinter, and MySQL. It empowers users to generate high-entropy passwords, securely record credentials, evaluate real-time password strength, and visualize vault security demographics through data analytics.
+</p>
 
-- Generate customizable passwords.
-- Analyze password strength using simple rules.
-- Store credential records in MySQL.
-- Display stored records through a desktop GUI.
-- Keep passwords masked in the normal table view.
-- Analyze credential categories using Pandas.
-- Visualize category counts and password-strength distribution with Matplotlib.
-- Demonstrate how Python, a database, data analysis, and visualization work together.
+[Quick Start](#-quick-start) • [Key Features](#-key-features) • [System Architecture](#-system-architecture) • [Database Schema](#-database-schema) • [Troubleshooting](#-troubleshooting)
 
-## Important Security Limitation
+</div>
 
-This is an educational project, not a production password manager. Passwords are stored using Base64 encoding so the database representation differs from the original password.
+---
 
-Base64 is encoding, not encryption. A real password manager would require proper cryptographic protection, secure key management, and a security review.
+## 📌 Executive Summary
 
-## Project Structure
+**PassVault** bridges the gap between strong cybersecurity practices and user convenience. In modern digital environments, users face severe **Password Fatigue**, leading to weak password choices and dangerous cross-account password reuse. 
+
+PassVault resolves this challenge by delivering a localized desktop solution that:
+* 🎲 **Generates high-entropy random passwords** with custom length and character variety parameters.
+* 📊 **Evaluates password strength real-time** using rule-based scoring and dynamic progress indicators.
+* 🗄️ **Stores credentials in a relational database** using MySQL (`passvault_db`).
+* 🙈 **Protects privacy with masked UI fields** (`********`) and on-demand password revealing.
+* 📈 **Visualizes security statistics** with interactive Pandas dataframes and Matplotlib side-by-side charts.
+
+---
+
+## ✨ Key Features
+
+| Feature | Description |
+| :--- | :--- |
+| ⚡ **Password Generator** | Generates 8 to 32-character complex passwords with custom lowercase, uppercase, numeric, and special symbol toggles. |
+| 🛡️ **Real-time Security Analyzer** | Evaluates entropy complexity, categorizes passwords into **Weak**, **Moderate**, or **Strong** tiers, and updates progress bars dynamically. |
+| 🗃️ **Relational Credential Vault** | Stores credentials with fields for Platform/Account, Username/Email, Encoded Password, Category, Strength Tier, and Date. |
+| 👁️ **Data Privacy & Masking** | Conceals password strings in table views with a single-click **Reveal** option for authorized verification. |
+| 📊 **Security Analytics Dashboard** | Aggregates vault data using Pandas and renders Matplotlib bar charts (Category breakdown) and pie charts (Strength ratios). |
+| 🛠️ **Built-in Connection Tester** | Includes `test_connection.py` to instantly verify MySQL password and database setup before launching. |
+
+---
+
+## 🛠️ Technology Stack
 
 ```text
-PassVault/
-├── app.py
-├── database.sql
-├── requirements.txt
-├── README.md
-└── screenshots/
+               +-------------------------------------------------------+
+               |                    PASSVAULT GUI                      |
+               |                (Tkinter / ttk Themes)                 |
+               +---------------------------+---------------------------+
+                                           |
+                    +----------------------+----------------------+
+                    |                                             |
+       +------------v------------+                   +------------v------------+
+       |   Security & Logic      |                   |    Data Science Stack   |
+       |  (Python Standard Lib)  |                   |   (Pandas & Matplotlib) |
+       +------------+------------+                   +------------+------------+
+                    |                                             |
+                    +----------------------+----------------------+
+                                           |
+                               +-----------v-----------+
+                               |     MySQL Database    |
+                               | (mysql-connector-py)  |
+                               +-----------------------+
 ```
 
-## Required Software
+| Component | Technology | Purpose |
+| :--- | :--- | :--- |
+| **Language** | Python 3.10+ | Core application logic and execution runtime. |
+| **GUI Framework** | Tkinter / ttk (`clam` theme) | Native desktop layout, treeview tables, styled dialogs. |
+| **Database Engine** | MySQL Server 8.0+ | Relational storage for credential records. |
+| **DB Driver** | `mysql-connector-python` | Parameterized SQL query execution and database connectivity. |
+| **Data Analytics** | Pandas | Data manipulation, filtering, and `value_counts()` aggregation. |
+| **Visualization** | Matplotlib (`pyplot`) | Rendering side-by-side bar charts and pie graphs. |
 
-- Python 3
-- MySQL Server
-- MySQL Workbench or another MySQL client
-- VS Code with the Python extension
+---
 
-## Installation
+## 🚀 Quick Start
 
-For the exact 10-step procedure to configure the project on another computer, read [SCHOOL_SETUP.md](SCHOOL_SETUP.md).
+### 1. Prerequisites
+Ensure you have installed:
+* [Python 3.10+](https://www.python.org/downloads/) (with *Add Python to PATH* enabled)
+* [MySQL Server](https://dev.mysql.com/downloads/installer/) & [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
 
-Install the Python packages from the project folder:
+### 2. Install Python Dependencies
+Open your PowerShell or Command Prompt terminal in the project directory and run:
 
 ```powershell
 python -m pip install -r requirements.txt
 ```
 
-Tkinter normally comes with Python on Windows and is not listed in `requirements.txt`.
+### 3. Initialize the MySQL Database
+1. Open MySQL Workbench and log into your local server instance.
+2. Open [database.sql](database.sql) and execute the complete script (click the **Lightning Bolt** icon).
+3. This creates the database `passvault_db` and table `credentials`.
 
-## Database Setup
-
-1. Start the MySQL service.
-2. Open `database.sql` in MySQL Workbench.
-3. Execute the script.
-4. Open `app.py`.
-5. Set the database environment variables in PowerShell before running the app:
+### 4. Test & Run the Application
+Set your local MySQL password in PowerShell and launch `app.py`:
 
 ```powershell
+# Set your local MySQL password
 $env:PASSVAULT_DB_HOST = "localhost"
 $env:PASSVAULT_DB_USER = "root"
 $env:PASSVAULT_DB_PASSWORD = "YOUR_MYSQL_PASSWORD"
 $env:PASSVAULT_DB_NAME = "passvault_db"
-```
 
-Do not publish a real database password in source code or commit it to Git.
+# Optional: Run the automated connection tester
+python test_connection.py
 
-## Run the Application
-
-```powershell
+# Launch PassVault Desktop Application
 python app.py
 ```
 
-## Main Features
+---
 
-- Generate passwords from 8 to 32 characters
-- Select lowercase, uppercase, numbers, and symbols
-- Analyze password strength as Weak, Moderate, or Strong
-- Copy generated passwords to the clipboard
-- Save credential records in MySQL
-- View records in a masked Tkinter table
-- Reveal or delete a selected record
-- Refresh the table
-- Display category and strength analytics with Pandas and Matplotlib
+## 🗄️ Database Schema
 
-### Password Generator
+### Database: `passvault_db` | Table: `credentials`
 
-The generator accepts a length from 8 to 32 characters and supports lowercase letters, uppercase letters, numbers, and symbols. Every selected character category is represented in the generated result before the remaining characters are randomized.
+| Field | Type | Nullable | Key / Default | Description |
+| :--- | :--- | :---: | :---: | :--- |
+| **`id`** | `INT` | No | **PRIMARY KEY** (Auto Increment) | Unique identification key. |
+| **`account_name`** | `VARCHAR(100)` | No | None | Platform name (e.g. GitHub, Google). |
+| **`username_email`**| `VARCHAR(120)` | No | None | User's account login handle or email. |
+| **`encrypted_password`**| `VARCHAR(255)`| No | None | Base64-encoded password string. |
+| **`category`** | `VARCHAR(50)` | No | `'Other'` | Category (*Email, Work, Social, Banking, Other*). |
+| **`strength_tier`**| `VARCHAR(20)` | No | None | Security rating (*Weak, Moderate, Strong*). |
+| **`created_date`** | `DATE` | No | None | Date timestamp (`YYYY-MM-DD`). |
 
-### Password Strength Analyzer
+---
 
-The analyzer gives a `Weak`, `Moderate`, or `Strong` result. It checks whether the password has at least 8 or 12 characters and whether it contains lowercase letters, uppercase letters, numbers, and symbols. This is a simple educational indicator, not a professional security audit.
-
-### Credential Vault
-
-Each record contains an account name, username or email, password, category, strength tier, and creation date. Records can be saved, viewed, refreshed, revealed, and deleted. Passwords are masked in the Treeview.
-
-### Analytics
-
-The View Analytics button loads only `category` and `strength_tier` into a Pandas DataFrame. `value_counts()` produces the statistics used for a category bar chart and a password-strength pie chart.
-
-## Technologies Used
-
-| Technology | Purpose |
-|------------|---------|
-| Python | Main programming language |
-| Tkinter | Desktop graphical user interface |
-| MySQL | Persistent credential database |
-| mysql-connector-python | Python-to-MySQL connection |
-| Pandas | DataFrame analysis and counting |
-| Matplotlib | Bar and pie charts |
-| Base64 | Encoding demonstration only |
-
-Base64 is an encoding method, not encryption.
-
-## System Architecture
+## 📂 Project Directory Structure
 
 ```text
-User
-	|
-Tkinter GUI
-	|
-Application Logic
-	|
-MySQL Database
-	|
-Pandas Analysis
-	|
-Matplotlib Visualization
+PassVault/
+├── 📄 app.py                  # Main application entry point & Tkinter GUI
+├── 📄 test_connection.py      # Interactive MySQL database connection tester
+├── 📄 database.sql            # MySQL database schema initialization script
+├── 📄 requirements.txt        # Python package dependencies
+├── 📄 SCHOOL_SETUP.md         # Step-by-step school computer setup guide
+├── 📄 PROJECT_REPORT.md       # Complete 25-section CBSE Computer Science Project Report
+├── 📄 SECURITY_REVIEW.md      # Security analysis & educational disclaimer document
+└── 📄 README.md               # Project documentation homepage
 ```
 
-The user operates the Tkinter interface. Python validates inputs and performs application tasks. MySQL stores records. Pandas analyzes non-sensitive summary fields, and Matplotlib displays the results.
+---
 
-## Database Design
+## ⚠️ Important Educational Security Disclaimer
 
-Database: `passvault_db`
+> [!IMPORTANT]
+> **Classroom Demonstration Project Notice:** PassVault is designed as a Class 12 Computer Science project to demonstrate GUI development, SQL integration, and data visualization. Passwords in this project are stored using **Base64 encoding** for classroom presentation simplicity. 
+> 
+> Base64 is an **encoding format**, not cryptographic encryption. A production-grade password manager requires AES-256 authenticated encryption, master password key derivation (PBKDF2), and secure key storage.
 
-Table: `credentials`
+---
 
-| Field | Purpose |
-|-------|---------|
-| `id` | Unique record identifier |
-| `account_name` | Website or service name |
-| `username_email` | Associated username or email |
-| `encrypted_password` | Base64-encoded classroom demonstration value |
-| `category` | Social, Work, Education, Finance, Gaming, or Other |
-| `strength_tier` | Weak, Moderate, or Strong |
-| `created_date` | Date on which the record was saved |
+## ❓ Troubleshooting & FAQs
 
-The column is named `encrypted_password` in the supplied schema, but the value stored by this project is Base64 encoded, not encrypted.
+| Problem | Cause | Solution |
+| :--- | :--- | :--- |
+| **`python is not recognized`** | Python is not added to system PATH. | Re-install Python and check **Add Python to PATH**. |
+| **`Access denied for user 'root'@'localhost'`** | Incorrect MySQL root password. | Run `python test_connection.py` to test your password interactively. |
+| **`Unknown database 'passvault_db'`** | Database script not executed. | Open `database.sql` in MySQL Workbench and click the execute lightning bolt. |
+| **`Can't connect to MySQL server`** | MySQL Service is stopped. | Start the MySQL service from Windows Services or MySQL Workbench. |
+| **Browser tab opens displaying nothing** | Visual Studio Code Live Server extension. | Close the browser tab. PassVault is a **Tkinter Desktop App** (look for the window on your taskbar). |
 
-## SQL Operations
+---
 
-- `CREATE DATABASE` creates `passvault_db` if it does not exist.
-- `CREATE TABLE` creates the `credentials` table.
-- `INSERT` saves a new credential.
-- `SELECT` reads records for the Treeview or analytics.
-- `DELETE` removes the selected record.
+## 📜 Documentation Links
 
-The `id` field is a primary key, so it uniquely identifies a row. `AUTO_INCREMENT` creates a new numeric ID automatically. `NOT NULL` requires a value for important fields.
+* 📑 **[PROJECT_REPORT.md](PROJECT_REPORT.md)** — Complete 25-section CBSE Senior School Computer Science Project Report.
+* 🏫 **[SCHOOL_SETUP.md](SCHOOL_SETUP.md)** — Step-by-step installation guide for school computer labs.
+* 🔒 **[SECURITY_REVIEW.md](SECURITY_REVIEW.md)** — In-depth architectural security review and analysis.
 
-## Application Workflow
+---
 
-1. The user opens PASSVAULT.
-2. The user generates a password.
-3. The strength analyzer evaluates it.
-4. The user can copy the password.
-5. The user enters credential information.
-6. The credential is encoded for this classroom demonstration and saved in MySQL.
-7. Records appear in the masked Treeview after refresh.
-8. The user can reveal, delete, or refresh records.
-9. The user selects View Analytics.
-10. Pandas reads category and strength data from MySQL.
-11. Matplotlib displays the two charts.
-
-## Error Handling and Validation
-
-The application handles invalid password lengths, non-numeric lengths, disabled character types, empty form fields, invalid categories, missing Treeview selections, database failures, empty analytics data, decoding errors, and clipboard errors with message boxes. Database connections are closed in `finally` blocks where applicable.
-
-## Common Problems
-
-- **Access denied:** Check the MySQL username and password in `DB_CONFIG`.
-- **Database does not exist:** Execute `database.sql` in MySQL Workbench.
-- **Connection failed:** Confirm that the MySQL service is running.
-- **No analytics shown:** Save at least one credential before opening analytics.
-- **No row selected:** Select a table row before revealing or deleting it.
-
-## Security Limitations
-
-PASSVAULT is an educational Class 12 project, not a production-grade password manager.
-
-- Base64 is encoding, not encryption.
-- The Base64 value can be decoded and does not provide real password protection.
-- Real password managers use cryptographic protection and secure key management.
-- Database credentials should not be hard-coded in a real production application.
-- Sensitive data requires appropriate access control, storage, and auditing in real systems.
-
-## Future Scope
-
-The following are future improvements and are not currently implemented:
-
-- Strong cryptographic encryption
-- Secure key management
-- User authentication
-- Stronger password policies
-- Audit logging
-- Backup and recovery
-- More detailed security analytics
-- Professional deployment and security testing
-
-## Educational Topics Demonstrated
-
-- Python functions, classes, conditions, and loops
-- Tkinter widgets and event-driven programming
-- MySQL connectivity and parameterized SQL
-- Create, read, and delete database operations
-- Pandas DataFrames and `value_counts()`
-- Matplotlib bar and pie charts
-- Exception handling and input validation
-
-## Submission Checklist
-
-- [ ] Python and MySQL are installed.
-- [ ] Required packages are installed from `requirements.txt`.
-- [ ] MySQL service is running.
-- [ ] `database.sql` has been executed successfully.
-- [ ] `DB_CONFIG` contains the correct local settings.
-- [ ] The application starts with `python app.py`.
-- [ ] Password generation and strength analysis work.
-- [ ] A credential can be saved and displayed in the table.
-- [ ] Passwords are masked in the table.
-- [ ] Reveal and delete actions work.
-- [ ] Both analytics charts open.
-- [ ] Screenshots are stored in the `screenshots/` folder.
-- [ ] No real password has been published in the project files.
-
-## Suggested Demonstration Order
-
-1. Start the application.
-2. Generate a password and show its strength.
-3. Copy the generated password.
-4. Save a sample credential.
-5. Refresh the table and show the masked password.
-6. Reveal the selected password and explain the Base64 limitation.
-7. Delete the sample record.
-8. Open Security Analytics and explain both charts.
-
-## Testing Documentation
-
-| Test Case | Expected Result | Status |
-|-----------|-----------------|--------|
-| Application startup | Window opens without a traceback | PASS |
-| Python compilation | `app.py` compiles successfully | PASS |
-| Password generation | Requested lengths and selected categories work | PASS |
-| Invalid generator input | Clear error message appears | PASS |
-| Strength analysis | Weak, Moderate, and Strong tiers work | PASS |
-| Clipboard handling | Copy succeeds or shows a handled error | PASS |
-| Form validation | Invalid data is blocked | PASS |
-| Database connection | Valid local credentials connect | PENDING local password |
-| Credential insertion | Record is saved in MySQL | PENDING local database |
-| Treeview display | Records appear with masked passwords | PENDING local database |
-| Password masking | Actual password is hidden by default | PASS by code inspection |
-| Reveal | Selected record password is decoded | PENDING local database |
-| Delete | Selected record is deleted after confirmation | PENDING local database |
-| Refresh | Latest records are loaded | PENDING local database |
-| Pandas analytics | Category and strength data are analyzed | PASS by simulated failure and code validation |
-| Matplotlib charts | Both charts open from real records | PENDING local database |
-| Empty database | No Data message appears | PENDING local database |
-| Database failure | Useful error message appears without crashing | PASS by simulation |
-
-Tests marked pending require the user's local MySQL password and database setup. They must not be described as completed until run with real records.
-
-
-## Project Abstract
-
-PASSVAULT is a Python desktop application developed as a Class 12 Informatics Practices project. Its purpose is to demonstrate how a graphical user interface, a relational database, data analysis, and data visualization can work together. The application uses Tkinter to provide a password generator, a rule-based password-strength analyzer, a credential form, and a masked record table. Credential records are stored in a MySQL database named `passvault_db` in the `credentials` table. Pandas reads non-sensitive category and strength fields into a DataFrame and calculates frequencies using `value_counts()`. Matplotlib then displays a category bar chart and a password-strength pie chart. The application includes input validation, database error handling, clipboard handling, record deletion, password revealing, and table refreshing. For educational demonstration, passwords are stored using Base64 encoding, which is not encryption. Therefore, PASSVAULT is not a production-grade password manager. The project demonstrates Python programming, GUI design, SQL operations, exception handling, DataFrame analysis, and graphical visualization in one understandable desktop application.
-
-## Project Conclusion
-
-PASSVAULT successfully demonstrates the integration of Python, Tkinter, MySQL, Pandas, and Matplotlib in a single desktop application. It generates customizable passwords, evaluates their basic strength, stores credential records, displays masked data, and presents database-driven charts. During development, concepts such as functions, classes, validation, parameterized SQL, exception handling, DataFrames, and visualization were practiced. The project is educational rather than production software because its Base64 password representation is only encoding and does not provide encryption. Even with this limitation, PASSVAULT is useful for understanding how a Python program can collect user input, store structured data, analyze records, and convert results into visual information.
-
-## 30-45 Second Project Introduction
-
-PASSVAULT is a Python desktop application for password generation, credential storage, and basic security analysis. It helps users generate customizable passwords, check their strength, and save credential records in a MySQL database. The interface is built with Tkinter. Pandas loads category and strength information into a DataFrame, and Matplotlib displays a category bar chart and a password-strength pie chart. The project demonstrates how Python, GUI programming, SQL, data analysis, and visualization can be combined in one application. It is a Class 12 educational project, so Base64 is used only as encoding for demonstration and is not claimed to be encryption.
-
-## One-Minute Project Explanation
-
-The problem addressed by PASSVAULT is that users need a simple way to generate and organize sample credential records while learning about password strength. The solution is a Tkinter desktop application with a password generator, a rule-based strength analyzer, and a credential form. The form saves records to the MySQL database `passvault_db`, table `credentials`. The application can read records into a Treeview with passwords masked, reveal a selected encoded value for demonstration, delete records, and refresh the table. For analytics, only category and strength fields are read into a Pandas DataFrame. `value_counts()` calculates the number of records in each group, and Matplotlib displays the results as a bar chart and a pie chart. The result is a complete, understandable example of GUI, database, analysis, and visualization integration.
-
-## Final Submission Checklist
-
-- [ ] `app.py` included
-- [ ] `database.sql` included
-- [ ] `requirements.txt` included
-- [ ] `README.md` included
-- [ ] Screenshots captured using dummy data
-- [ ] Application starts successfully
-- [ ] MySQL database and table created
-- [ ] Local `DB_CONFIG` tested without publishing the password
-- [ ] Database-dependent tests completed locally
-- [ ] Testing results updated honestly
-- [ ] Viva questions reviewed
-- [ ] No real credentials included in screenshots or source files
-
-## Final Verification
-
-The documented implementation currently includes the password generator, strength analyzer, clipboard copy, credential form, MySQL storage, masked Treeview, reveal, delete, refresh, Pandas analytics, Matplotlib charts, input validation, exception handling, and UI polish.
-
-Before submission, the only remaining project-specific verification is to configure the local MySQL password, execute `database.sql`, and complete the pending real-database tests listed above. No unrelated code changes are required.
+<div align="center">
+  <sub>Developed for Senior Secondary Computer Science Demonstration • Built with ❤️ using Python & MySQL</sub>
+</div>

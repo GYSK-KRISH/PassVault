@@ -1,8 +1,9 @@
 # PASSVAULT: SENIOR SCHOOL COMPUTER SCIENCE PROJECT REPORT
 
 **PROJECT TITLE:** PassVault — Credential Manager & Security Analyzer  
-**ACADEMIC YEAR:** 2025 – 2026  
-**SUBMITTED FOR:** CBSE Class 12 Computer Science Practical Examination (Sub Code: 083)  
+**ACADEMIC YEAR:** 2026 – 2027  
+**SUBMITTED FOR:** CBSE Class 12 Computer Science Practical Examination  
+**SUBJECT CODE:** 083  
 **PROGRAMMING LANGUAGE:** Python 3  
 **DATABASE ENGINE:** MySQL Relational Database Management System (RDBMS)  
 **GUI FRAMEWORK:** Python Tkinter & ttk  
@@ -14,181 +15,70 @@
 
 | SR NO. | SECTION DESCRIPTION |
 | :---: | :--- |
-| **01** | **CERTIFICATE** |
-| **02** | **DECLARATION** |
-| **03** | **ACKNOWLEDGEMENT** |
-| **04** | **ABSTRACT / EXECUTIVE SUMMARY** |
-| **05** | **INTRODUCTION** |
-| **06** | **PROBLEM STATEMENT & NEED FOR THE PROJECT** |
-| **07** | **PROJECT OBJECTIVES** |
-| **08** | **EXISTING SYSTEM VS PROPOSED SYSTEM** |
-| **09** | **SCOPE OF THE PROJECT** |
-| **10** | **SYSTEM REQUIREMENTS** |
-| **11** | **SYSTEM ARCHITECTURE** |
-| **12** | **SYSTEM MODULES** |
-| **13** | **ALGORITHMS & FLOWCHARTS** |
-| **14** | **DATABASE DESIGN & ER MODEL** |
-| **15** | **DATA DICTIONARY** |
-| **16** | **CRUD OPERATIONS** |
-| **17** | **SECURITY FEATURES & INPUT VALIDATION** |
-| **18** | **USER INTERFACE DESIGN & LAYOUT** |
-| **19** | **SOURCE CODE** |
-| **20** | **TESTING AND VALIDATION (TEST CASES)** |
-| **21** | **RESULTS AND OUTCOMES** |
-| **22** | **LIMITATIONS** |
-| **23** | **FUTURE SCOPE** |
-| **24** | **CONCLUSION** |
-| **25** | **BIBLIOGRAPHY & REFERENCES** |
+| **01** | **INTRODUCTION** |
+| **02** | **PROBLEM STATEMENT & NEED FOR THE PROJECT** |
+| **03** | **PROJECT OBJECTIVES** |
+| **04** | **SCOPE OF THE PROJECT** |
+| **05** | **PROJECT METHODOLOGY** |
+| **06** | **SYSTEM REQUIREMENTS** |
+| **07** | **ALGORITHMS & FLOWCHARTS** |
+| **08** | **DATABASE DESIGN & ER MODEL** |
+| **09** | **DATA DICTIONARY** |
+| **10** | **DATABASE OPERATIONS** |
+| **11** | **SECURITY FEATURES & INPUT VALIDATION** |
+| **12** | **USER INTERFACE DESIGN & LAYOUT** |
+| **13** | **SOURCE CODE** |
+| **14** | **RESULTS AND OUTCOMES** |
+| **15** | **LIMITATIONS** |
+| **16** | **FUTURE SCOPE** |
+| **17** | **CONCLUSION & LEARNING OUTCOMES** |
+| **18** | **BIBLIOGRAPHY & REFERENCES** |
 
 ---
 
-## 01. CERTIFICATE
-
-```text
-================================================================================
-                           BONAFIDE CERTIFICATE
-================================================================================
-
-This is to certify that Master / Ms. __________________________________________ 
-Roll No. _____________________ of Class XII Section ____ has successfully completed 
-the Computer Science Project titled "PASSVAULT: CREDENTIAL MANAGER & SECURITY ANALYZER" 
-under the guidance of __________________________________________ during the academic 
-year 2025 – 2026 in partial fulfillment of the Computer Science Practical Examination 
-conducted by the Central Board of Secondary Education (CBSE).
-
-
-Date: ________________________
-
-Place: _______________________
-
-
-
-
-______________________________                 ______________________________
-   Internal Examiner Signature                    External Examiner Signature
-
-
-
-______________________________                 ______________________________
-  Teacher In-Charge Signature                             Principal Seal
-================================================================================
-```
-
----
-
-## 02. DECLARATION
-
-```text
-================================================================================
-                            STUDENT DECLARATION
-================================================================================
-
-I hereby declare that the Senior Secondary Computer Science Project titled 
-"PASSVAULT: CREDENTIAL MANAGER & SECURITY ANALYZER" submitted by me for the CBSE Class 
-12 Practical Examination is an authentic record of my own work carried out under 
-the supervision of my Computer Science Teacher.
-
-The code, database schema, design, and documentation included in this report have 
-been developed by me. Any external software libraries or reference literature used 
-in this project have been duly acknowledged in the Bibliography.
-
-
-Date: ________________________
-
-Student Name: __________________________________________
-
-Roll Number: ___________________________________________
-
-Signature: _____________________________________________
-========================================================
-```
-
----
-
-## 03. ACKNOWLEDGEMENT
-
-I express my deep sense of gratitude to our respected **Principal** and the **School Management** for providing excellent infrastructure and laboratory facilities for completing this project.
-
-I am immensely indebted to my **Computer Science Teacher**, whose invaluable guidance, constant motivation, and technical advice helped shape this project from concept to implementation.
-
-I also extend my sincere thanks to the **Laboratory Assistants** for their technical support during computer setup and database configuration, as well as to my **family and classmates** for their continuous support and helpful feedback during testing.
-
-Lastly, I express my appreciation to the open-source Python and MySQL developer communities for maintaining robust, accessible tools (`Tkinter`, `MySQL Connector`, `Pandas`, `Matplotlib`).
-
----
-
-## 04. ABSTRACT / EXECUTIVE SUMMARY
-
-**PassVault** is a modern desktop credential management and security analysis application developed using Python 3 and MySQL RDBMS. 
-
-In today's digital era, users face severe password fatigue, often resorting to weak or reused passwords across critical services. PassVault addresses this security challenge by providing an all-in-one localized desktop solution capable of:
-1. **Generating high-entropy, customizable passwords** using dynamic character set combinations.
-2. **Evaluating real-time password strength** through length and complexity score calculations.
-3. **Storing credential records securely** in a relational MySQL database (`passvault_db`).
-4. **Masking sensitive fields** in a visual `Treeview` interface with on-demand password retrieval.
-5. **Visualizing security statistics** using embedded `Pandas` data aggregation and `Matplotlib` comparative bar and pie charts.
-
-The application leverages Python's `tkinter` and `ttk` modules for its native graphical interface and integrates seamlessly with MySQL for relational storage. PassVault demonstrates core computer science concepts including Object-Oriented Programming (OOP), database connectivity, relational data modeling, data encoding, algorithmic validation, and data visualization.
-
----
-
-## 05. INTRODUCTION
+## 01. INTRODUCTION
 
 ### Background
 Computer users regularly register accounts across educational portals, email providers, social media platforms, banking systems, and online services. Security guidelines mandate that every account should use a unique, complex password consisting of uppercase letters, lowercase letters, numbers, and symbols. 
 
-However, remembering dozens of distinct 16-character passwords without software assistance is virtually impossible for most individuals. As a result, users default to predictable patterns (e.g., `Password123`, `User2025`), exposing themselves to credential-stuffing and dictionary attacks.
+However, remembering dozens of distinct passwords without software assistance is virtually impossible for most individuals. As a result, users default to predictable patterns (e.g., `Password123`, `User2026`), exposing themselves to dictionary and credential-stuffing attacks.
 
 ### Purpose
 **PassVault** bridges the gap between strong cybersecurity practices and user convenience. It acts as a personal credential repository and security auditor on the user's computer, empowering users to create robust passwords, keep records organized by category, and evaluate their overall security posture.
 
 ---
 
-## 06. PROBLEM STATEMENT & NEED FOR THE PROJECT
+## 02. PROBLEM STATEMENT & NEED FOR THE PROJECT
 
 ### Problem Statement
 Most internet users suffer from **Password Fatigue**, leading to three primary security risks:
 1. **Password Reuse:** Using the same single password across multiple websites.
-2. **Weak Passwords:** Setting simple, dictionary-based passwords that can be cracked easily.
+2. **Weak Passwords:** Setting simple, dictionary-based passwords that can be guessed easily.
 3. **Unorganized Credential Tracking:** Storing usernames and passwords in cleartext text files, paper notebooks, or unencrypted spreadsheets.
 
 ### Need for the Project
 There is a need for a lightweight, localized desktop application that allows students and individual users to:
-- Generate strong, random passwords instantly without relying on third-party online generators.
+- Generate random passwords instantly without relying on third-party online generators.
 - Safely store credentials in a local MySQL relational database.
-- Receive immediate visual feedback regarding the strength of passwords before saving them.
+- Receive immediate visual feedback regarding the complexity score of passwords before saving them.
 - View statistical analytics highlighting vulnerable accounts that require security upgrades.
 
 ---
 
-## 07. PROJECT OBJECTIVES
+## 03. PROJECT OBJECTIVES
 
-The primary objective of PassVault is to design, implement, and validate a secure desktop management system. The specific goals include:
+The primary objective of PassVault is to design, implement, and validate a desktop management system. The specific goals include:
 
 1. **Customizable Password Generation:** Implement a random character generator allowing users to specify password lengths (8 to 32 characters) and toggle upper, lower, numeric, and special character sets.
-2. **Real-time Security Scoring:** Build a strength evaluation algorithm that categorizes passwords into **Weak**, **Moderate**, or **Strong** tiers and updates visual progress bars dynamically.
-3. **Relational Database Storage:** Establish a Python-to-MySQL database pipeline using `mysql-connector-python` to perform SQL queries (`INSERT`, `SELECT`, `DELETE`).
-4. **Data Privacy & Masking:** Ensure passwords are displayed as masked strings (`********`) in the main UI table, with on-demand Base64 decoding when authorized.
+2. **Real-time Complexity Scoring:** Build a rule-based complexity scoring algorithm that categorizes passwords into **Weak**, **Moderate**, or **Strong** tiers and updates visual progress bars dynamically.
+3. **Relational Database Storage:** Establish a Python-to-MySQL database pipeline using `mysql-connector-python` to perform SQL statements (`INSERT`, `SELECT`, `DELETE`).
+4. **Data Privacy & Masking:** Ensure passwords are displayed as masked strings (`********`) in the main UI table, with on-demand Base64 decoding when selected by the user.
 5. **Data Analytics Dashboard:** Integrate `Pandas` and `Matplotlib` to generate graphical charts displaying account category distribution and password strength ratios.
 6. **Robust Error Handling:** Include defensive programming techniques to handle missing inputs, database connectivity failures, and invalid operations gracefully.
 
 ---
 
-## 08. EXISTING SYSTEM VS PROPOSED SYSTEM
-
-| Feature / Criteria | Existing Manual / Unorganized System | Proposed **PassVault** System |
-| :--- | :--- | :--- |
-| **Credential Storage** | Plaintext text files, paper notes, or browser autofill | Centralized local MySQL relational database (`passvault_db`) |
-| **Password Generation** | User invents simple, memorable words manually | Automated high-entropy generator with customizable parameters |
-| **Security Evaluation** | No evaluation mechanism; users guess strength | Real-time score calculation and visual color-coded progress bar |
-| **Organization** | Unstructured list without search or categories | Categorized entries (*Email, Work, Social, Banking, Other*) |
-| **Security Insights** | No visibility into account security health | Integrated Pandas & Matplotlib graphical analytics dashboard |
-| **Data Masking** | Plaintext visible to anyone looking at the screen | Masked UI display (`********`) with explicit reveal option |
-| **Database Integrity** | High risk of file corruption or accidental deletion | Structured SQL schema with primary keys and constrained fields |
-
----
-
-## 09. SCOPE OF THE PROJECT
+## 04. SCOPE OF THE PROJECT
 
 ### Operational Scope
 - **Target Audience:** School students, educators, and individual desktop users managing personal account credentials locally.
@@ -197,11 +87,51 @@ The primary objective of PassVault is to design, implement, and validate a secur
 ### Technical Scope
 - **Interface:** Native Graphical User Interface (GUI) built with `tkinter` and `ttk`.
 - **Backend Storage:** Local MySQL Database (`passvault_db`) executing on `localhost:3306`.
-- **Analytics:** Static data visualization rendering comparative bar charts and pie charts via `Matplotlib`.
+- **Analytics:** Data visualization rendering comparative bar charts and pie charts via `Matplotlib`.
 
 ---
 
-## 10. SYSTEM REQUIREMENTS
+## 05. PROJECT METHODOLOGY
+
+The development of **PassVault** followed a structured Software Development Life Cycle (SDLC) approach tailored for educational software projects:
+
+```text
+┌──────────────────────────┐
+│   Requirement Analysis   │ -> Identify credential tracking & security needs
+└────────────┬─────────────┘
+             │
+┌────────────▼─────────────┐
+│      System Design       │ -> Architectural layer planning (GUI -> Logic -> DB)
+└────────────┬─────────────┘
+             │
+┌────────────▼─────────────┐
+│     Database Design      │ -> Schema creation (passvault_db & credentials table)
+└────────────┬─────────────┘
+             │
+┌────────────▼─────────────┐
+│  Application Coding      │ -> Implementation using Python, Tkinter, and MySQL
+└────────────┬─────────────┘
+             │
+┌────────────▼─────────────┐
+│    Analytics Engine      │ -> Integrating Pandas & Matplotlib charts
+└────────────┬─────────────┘
+             │
+┌────────────▼─────────────┐
+│   Testing & Validation   │ -> Functional, validation, and error-handling tests
+└──────────────────────────┘
+```
+
+1. **Requirement Analysis:** Identified essential password management and security auditing features.
+2. **System Design:** Structured the project into modular components (GUI, Strength Engine, DB Controller, Analytics).
+3. **Database Design:** Created `database.sql` defining `passvault_db` and the `credentials` table with primary key constraints.
+4. **Application Development:** Developed the Python codebase (`app.py`) using Object-Oriented Programming (OOP) in Tkinter.
+5. **Database Integration:** Implemented parameterized SQL execution via `mysql-connector-python`.
+6. **Analytics Integration:** Configured `Pandas` dataframes and `Matplotlib` figure rendering.
+7. **Testing & Validation:** Executed comprehensive test cases covering positive inputs, negative inputs, boundaries, and database failures.
+
+---
+
+## 06. SYSTEM REQUIREMENTS
 
 ### Hardware Requirements
 
@@ -228,7 +158,7 @@ The primary objective of PassVault is to design, implement, and validate a secur
 python -m pip install mysql-connector-python pandas matplotlib
 ```
 
-- **`tkinter` / `ttk`:** Standard GUI widget toolkit for building desktop frames, entries, buttons, treeviews, and dialog boxes.
+- **`tkinter` / `ttk`:** Native GUI widget toolkit for building desktop frames, entries, buttons, treeviews, and dialog boxes.
 - **`mysql-connector-python`:** Official MySQL driver for executing SQL statements from Python scripts.
 - **`pandas`:** Data manipulation library used to transform SQL query results into DataFrames for analytical aggregation.
 - **`matplotlib`:** Plotting engine used to generate bar charts and pie graphs.
@@ -236,82 +166,7 @@ python -m pip install mysql-connector-python pandas matplotlib
 
 ---
 
-## 11. SYSTEM ARCHITECTURE
-
-The PassVault application follows a modular, 3-tier desktop software architecture separating the **Presentation Layer (GUI)**, **Application Logic & Security Layer**, and **Data Storage & Analytics Layer**.
-
-```mermaid
-graph TD
-    User([User Application Interface]) -->|User Action / Input| GUI[Presentation Layer: Tkinter & ttk GUI]
-
-    subgraph Logic Layer
-        GUI -->|Generate Parameters| Gen[Password Generator Engine]
-        GUI -->|Password String| Analyzer[Security Strength Analyzer]
-        GUI -->|Form Submission| Controller[CRUD Event Controller]
-    end
-
-    subgraph Storage & Data Analytics Layer
-        Controller -->|SQL Queries: INSERT / SELECT / DELETE| DB[(MySQL Database: passvault_db)]
-        Controller -->|SQL Dataframe Fetch| Analytics[Pandas & Matplotlib Analytics]
-    end
-
-    Gen -->|Generated String| GUI
-    Analyzer -->|Score & Tier| GUI
-    DB -->|Records Result Set| GUI
-    Analytics -->|Rendered Graph Window| GUI
-```
-
----
-
-## 12. SYSTEM MODULES
-
-PassVault is structured into **9 distinct functional modules**:
-
-1. **UI & Theme Management Module (`configure_styles`):**
-   - Configures application theme (`clam`), visual colors, fonts (`Segoe UI`), entry paddings, and button states.
-   - Sets color palettes for primary actions (`#136CC5`), success feedback (`#16A34A`), warning alerts (`#F59E0B`), danger alerts (`#DC2626`), and table headers (`#173F73`).
-
-2. **Password Generator Module (`generate_password`):**
-   - Reads requested length (8–32) and character boolean flags (lowercase, uppercase, numbers, symbols).
-   - Generates random combinations using Python's `random.choice()`.
-   - Populates entry fields automatically and triggers immediate strength recalculation.
-
-3. **Password Strength Analyzer Engine (`calculate_strength`):**
-   - Evaluates length bonuses and character variety scores.
-   - Categorizes passwords into **Weak** (Score < 3), **Moderate** (Score 3–4), or **Strong** (Score 5+).
-   - Dynamically updates the visual `ttk.Progressbar` and text indicators.
-
-4. **Credential Entry & Form Control Module (`save_credential`):**
-   - Validates user input to prevent empty platform or username records.
-   - Encodes passwords into Base64 format for storage demonstration.
-   - Inserts new entries into MySQL along with category tags and current date timestamps.
-
-5. **Database Controller Module (`DB_CONFIG` / Connections):**
-   - Connects to MySQL using environment variables (`PASSVAULT_DB_HOST`, `PASSVAULT_DB_USER`, `PASSVAULT_DB_PASSWORD`, `PASSVAULT_DB_NAME`).
-   - Executes SQL statements using parameterized queries to prevent SQL injection vulnerabilities.
-
-6. **Vault Table Viewer Module (`load_credentials`):**
-   - Queries records from `passvault_db.credentials` ordered by latest ID.
-   - Populates the `ttk.Treeview` control with alternating row background colors (`odd`/`even`).
-   - Displays masked password strings (`********`) for privacy.
-
-7. **Reveal & Masking Controller (`reveal_password`):**
-   - Retrieves the Base64-encoded string for a selected table row.
-   - Decodes the Base64 value on-demand and displays the plain password in an info message dialog.
-
-8. **Analytics & Visualization Engine (`plot_analytics`):**
-   - Uses `pandas.read_sql()` to load category and strength distribution data into a DataFrame.
-   - Generates side-by-side plots using `matplotlib.pyplot`:
-     - **Bar Chart:** Accounts per Category (*Email, Work, Social, Banking, Other*).
-     - **Pie Chart:** Percentage breakdown of Strength Tiers (*Weak, Moderate, Strong*).
-
-9. **Error Handling & Validation Subsystem:**
-   - Intercepts `mysql.connector.Error` exceptions to prevent application crashes when MySQL is unreachable or credentials fail.
-   - Displays clear user dialog alerts (`messagebox.showerror`, `messagebox.showwarning`).
-
----
-
-## 13. ALGORITHMS & FLOWCHARTS
+## 07. ALGORITHMS & FLOWCHARTS
 
 ### Algorithm 1: Password Generation Algorithm
 
@@ -343,34 +198,16 @@ OUTPUT: generated_password (String)
 ================================================================================
 ```
 
-#### Flowchart 1: Password Generation
-
-```mermaid
-flowchart TD
-    A([START]) --> B[Read Length and Checkbox Flags]
-    B --> C{Any Checkbox Selected?}
-    C -- NO --> D[Show Warning Dialog: Select at least 1 character set]
-    D --> Z([END])
-    C -- YES --> E[Build Combined Character Set Pool]
-    E --> F[Initialize Empty Result String]
-    F --> G[Loop: Pick Random Character from Pool]
-    G --> H{Length Reached?}
-    H -- NO --> G
-    H -- YES --> I[Set Generated Password Output Variable]
-    I --> J[Trigger Strength Calculation]
-    J --> Z
-```
-
 ---
 
-### Algorithm 2: Password Strength Calculation
+### Algorithm 2: Rule-Based Password Complexity Scoring
 
 ```text
 ================================================================================
-ALGORITHM 2: PASSWORD STRENGTH EVALUATION
+ALGORITHM 2: RULE-BASED PASSWORD COMPLEXITY SCORING
 ================================================================================
 INPUT : password (String)
-OUTPUT: score (Integer), strength_tier (String: "Weak" | "Moderate" | "Strong")
+OUTPUT: score (Integer 0-6), strength_tier (String: "Weak" | "Moderate" | "Strong")
 
 1. START
 2. Initialize `score` = 0
@@ -381,13 +218,16 @@ OUTPUT: score (Integer), strength_tier (String: "Weak" | "Moderate" | "Strong")
 7. IF password contains DIGIT character THEN score = score + 1
 8. IF password contains SYMBOL character THEN score = score + 1
 9. EVALUATE score:
-     IF score < 3 THEN
+     IF score <= 2 THEN
         strength_tier = "Weak"
+        progress_bar_color = RED (33%)
      ELSE IF score is 3 OR 4 THEN
         strength_tier = "Moderate"
-     ELSE
+        progress_bar_color = AMBER (66%)
+     ELSE (score 5 or 6)
         strength_tier = "Strong"
-10. Update UI Progress Bar Value and Color Tier
+        progress_bar_color = GREEN (100%)
+10. Update UI Progress Bar Value and Text Label
 11. RETURN strength_tier
 12. END
 ================================================================================
@@ -395,31 +235,16 @@ OUTPUT: score (Integer), strength_tier (String: "Weak" | "Moderate" | "Strong")
 
 ---
 
-## 14. DATABASE DESIGN & ER MODEL
+## 08. DATABASE DESIGN & ER MODEL
 
 ### Database Identification
 - **Database Engine:** MySQL 8.0 Server
 - **Database Name:** `passvault_db`
 - **Primary Table:** `credentials`
 
-### Entity-Relationship (ER) Representation
-
-```mermaid
-erDiagram
-    CREDENTIALS {
-        int id PK "AUTO_INCREMENT"
-        string account_name "VARCHAR(100) NOT NULL"
-        string username_email "VARCHAR(120) NOT NULL"
-        string encrypted_password "VARCHAR(255) NOT NULL"
-        string category "VARCHAR(50) DEFAULT 'Other'"
-        string strength_tier "VARCHAR(20) NOT NULL"
-        date created_date "DATE NOT NULL"
-    }
-```
-
 ---
 
-## 15. DATA DICTIONARY
+## 09. DATA DICTIONARY
 
 ### Table: `credentials`
 
@@ -428,81 +253,93 @@ erDiagram
 | **`id`** | `INT` | No | **PRIMARY KEY** | `AUTO_INCREMENT` | Unique integer record identifier. |
 | **`account_name`** | `VARCHAR(100)` | No | None | None | Name of service/website (e.g. GitHub, Google). |
 | **`username_email`**| `VARCHAR(120)` | No | None | None | Account login name, handle, or email address. |
-| **`encrypted_password`**| `VARCHAR(255)`| No | None | None | Base64-encoded string representation of password. |
+| **`encrypted_password`**| `VARCHAR(255)`| No | None | None | Base64-encoded password representation string. |
 | **`category`** | `VARCHAR(50)` | No | None | `'Other'` | Category group (*Email, Work, Social, Banking, Other*). |
 | **`strength_tier`**| `VARCHAR(20)` | No | None | None | Security rating (*Weak, Moderate, Strong*). |
 | **`created_date`** | `DATE` | No | None | None | Record creation date stamp (`YYYY-MM-DD`). |
 
 ---
 
-## 16. CRUD OPERATIONS
+## 10. DATABASE OPERATIONS
 
-PassVault implements key **CRUD (Create, Read, Update, Delete)** data management operations tailored for safe desktop credential storage:
+PassVault executes four database and data manipulation operations:
 
-### 1. Create (Save New Credential)
-- **Action:** User fills in Account Name, Username/Email, Password, and Category, then clicks **Save Credential to Vault**.
-- **SQL Query:**
+```text
+                       DATABASE OPERATIONS IN PASSVAULT
+                                      │
+         ┌────────────────────────────┼────────────────────────────┐
+         ▼                            ▼                            ▼
+    1. CREATE                     2. READ                      3. REVEAL
+  (SQL INSERT)                  (SQL SELECT)               (Base64 Decode)
+         │                            │                            │
+         └────────────────────────────┼────────────────────────────┘
+                                      ▼
+                                  4. DELETE
+                                (SQL DELETE)
+```
+
+### 1. CREATE — Insert a New Credential
+- **Trigger:** User fills the credential form and clicks **Save Credential to Vault**.
+- **SQL Statement:**
   ```sql
   INSERT INTO credentials (account_name, username_email, encrypted_password, category, strength_tier, created_date)
   VALUES (%s, %s, %s, %s, %s, %s);
   ```
-- **Behavior:** Encodes the password string with Base64, inserts the row into MySQL, commits the transaction, shows a success popup, and refreshes the table.
+- **Execution Logic:** Converts the plaintext password string into a Base64 encoded string (`base64.b64encode()`), binds arguments into a parameterized query tuple, executes insertion, commits the transaction, and refreshes the vault table.
 
-### 2. Read (Query Vault List & Masking)
-- **Action:** Application launches or refreshes table after mutation.
-- **SQL Query:**
+### 2. READ — Retrieve & Display Credentials
+- **Trigger:** Application startup or after any table mutation.
+- **SQL Statement:**
   ```sql
   SELECT id, account_name, username_email, category, strength_tier, created_date 
   FROM credentials 
   ORDER BY id DESC;
   ```
-- **Behavior:** Retrieves records and inserts them into `ttk.Treeview`. Displays `********` in the password column for privacy.
+- **Execution Logic:** Queries records ordered by newest ID first, iterates through the result set, masks passwords as `********`, and populates the `ttk.Treeview` widget.
 
-### 3. Reveal (Selective Decryption/Decoding)
-- **Action:** User selects a row and clicks **Reveal Selected Password**.
-- **SQL Query:**
+### 3. REVEAL — Selective Base64 Decoding
+- **Trigger:** User selects a row in the table and clicks **Reveal Selected Password**.
+- **SQL Statement:**
   ```sql
   SELECT encrypted_password FROM credentials WHERE id = %s;
   ```
-- **Behavior:** Fetches the Base64 string for the selected ID, decodes it using `base64.b64decode()`, and displays the original password in a secure modal dialog.
+- **Execution Logic:** Fetches the Base64 encoded string for the selected ID, decodes it using `base64.b64decode()`, and presents the decoded string in an information message dialog box.
 
-### 4. Delete (Remove Credential)
-- **Action:** User selects a row and clicks **Delete Selected Credential**.
-- **SQL Query:**
+### 4. DELETE — Remove Credential
+- **Trigger:** User selects a row in the table and clicks **Delete Selected Credential**.
+- **SQL Statement:**
   ```sql
   DELETE FROM credentials WHERE id = %s;
   ```
-- **Behavior:** Prompts for user confirmation (`messagebox.askyesno`). If confirmed, executes deletion, commits transaction, and updates the table view.
-
-> **Note on Update:** In alignment with credential management safety standards, password updates are performed by creating a new entry or deleting the old record to ensure explicit revision history tracking.
+- **Execution Logic:** Prompts the user with a confirmation dialog (`messagebox.askyesno`). If confirmed, executes deletion, commits transaction, and refreshes the table.
 
 ---
 
-## 17. SECURITY FEATURES & INPUT VALIDATION
+## 11. SECURITY FEATURES & INPUT VALIDATION
 
-1. **Input Sanitization & Whitespace Trimming:**
-   - Account names and usernames are sanitized using `.strip()` to prevent accidental trailing spaces.
-   - Prevents blank record insertion by validating mandatory fields prior to database submission.
+1. **Input Sanitization:**
+   - Account names and usernames are sanitized using `.strip()` to strip leading and trailing whitespace characters.
+   - Input validation guards prevent submission of empty account or username fields.
 
 2. **Base64 String Encoding Demonstration:**
-   - Plaintext passwords are not saved directly in plaintext SQL statements. They are converted to Base64 byte representations (`base64.b64encode()`) for storage demonstration.
-   - *Educational Note:* Base64 is representation encoding, not cryptographic encryption. It demonstrates string encoding concepts in database applications.
+   - Plaintext passwords are not stored directly in cleartext SQL queries. Passwords are converted into Base64 encoded string representations before SQL execution.
+   - *Technical Note:* Base64 is an encoding format, not cryptographic encryption. It is used here for educational demonstration of string transformations in database applications.
 
 3. **Data Masking in UI:**
-   - Table views replace passwords with uniform mask strings (`********`), preventing shoulder-surfing during public presentations or daily use.
+   - The primary `Treeview` table displays uniform mask strings (`********`) for all password fields to prevent casual shoulder-surfing.
 
-4. **Parameterized SQL Statements:**
-   - All SQL executions use parameterized `%s` query bindings rather than string concatenation, protecting the application against SQL Injection (SQLi) attacks.
+4. **Parameterized SQL Queries:**
+   - All database executions utilize parameterized SQL query placeholders (`%s`) to prevent SQL Injection (SQLi) vulnerabilities.
 
-5. **Defensive Database Connection Handling:**
-   - Uses `try ... except mysql.connector.Error` blocks around every database action.
-   - Connections are safely closed in `finally` blocks to prevent dangling database connection leaks.
+5. **Defensive Connection Handling:**
+   - Database routines are wrapped in `try ... except mysql.connector.Error` blocks.
+   - Database connections are closed in `finally` blocks to prevent unclosed connection leaks.
 
 ---
 
-## 18. USER INTERFACE DESIGN & LAYOUT
+## 12. USER INTERFACE DESIGN & LAYOUT
 
-PassVault features a professional, modern color theme built with custom `ttk` styling:
+### ASCII Wireframe Representation
 
 ```text
 +-----------------------------------------------------------------------------+
@@ -533,9 +370,9 @@ PassVault features a professional, modern color theme built with custom `ttk` st
 
 ---
 
-## 19. SOURCE CODE
+## 13. SOURCE CODE
 
-Below is the core application source code (`app.py`):
+Below is the complete application codebase (`app.py`):
 
 ```python
 import base64
@@ -602,8 +439,128 @@ class PassVaultApp:
         self.create_interface()
         self.load_credentials()
 
+    def configure_styles(self):
+        """Configure application visual theme styles."""
+        self.style = ttk.Style(self.root)
+        self.style.theme_use("clam")
+        self.style.configure("App.TFrame", background=BG_COLOR)
+        self.style.configure("TFrame", background=CARD_COLOR)
+        self.style.configure("TLabel", background=CARD_COLOR, foreground=TEXT_COLOR, font=("Segoe UI", 9))
+        self.style.configure("TCheckbutton", background=CARD_COLOR, foreground=TEXT_COLOR, font=("Segoe UI", 9))
+        self.style.configure("TEntry", fieldbackground=CARD_COLOR, foreground=TEXT_COLOR, padding=5)
+        self.style.configure("TCombobox", fieldbackground=CARD_COLOR, background=CARD_COLOR, foreground=TEXT_COLOR, padding=4)
+        self.style.configure("TSpinbox", fieldbackground=CARD_COLOR, foreground=TEXT_COLOR, padding=4)
+        self.style.configure("TButton", padding=(10, 7), font=("Segoe UI", 9, "bold"), borderwidth=0)
+        self.style.configure("Primary.TButton", background=PRIMARY_COLOR, foreground="white")
+        self.style.configure("Success.TButton", background=SUCCESS_COLOR, foreground="white")
+        self.style.configure("Danger.TButton", background=DANGER_COLOR, foreground="white")
+        self.style.configure("Analytics.TButton", background=ANALYTICS_COLOR, foreground="white")
+        self.style.map("Primary.TButton", background=[("active", PRIMARY_HOVER)])
+        self.style.map("Success.TButton", background=[("active", SUCCESS_HOVER)])
+        self.style.map("Danger.TButton", background=[("active", DANGER_HOVER)])
+        self.style.map("Analytics.TButton", background=[("active", ANALYTICS_HOVER)])
+        self.style.configure("Treeview", background=CARD_COLOR, foreground=TEXT_COLOR, rowheight=32, fieldbackground=CARD_COLOR, font=("Segoe UI", 9), borderwidth=0)
+        self.style.configure("Treeview.Heading", background=TABLE_HEADER, foreground="white", font=("Segoe UI", 9, "bold"), padding=8)
+        self.style.configure("Weak.Horizontal.TProgressbar", troughcolor="#dbeafe", background=DANGER_COLOR)
+        self.style.configure("Moderate.Horizontal.TProgressbar", troughcolor="#dbeafe", background=WARNING_COLOR)
+        self.style.configure("Strong.Horizontal.TProgressbar", troughcolor="#dbeafe", background=SUCCESS_COLOR)
+
+    def create_interface(self):
+        """Construct all GUI frames and controls."""
+        header_frame = tk.Frame(self.root, bg=HEADER_COLOR, height=105)
+        header_frame.pack(fill="x")
+        header_frame.pack_propagate(False)
+
+        tk.Label(header_frame, text="PASSVAULT", bg=HEADER_COLOR, fg="white", font=("Segoe UI", 22, "bold")).pack(pady=(12, 3))
+        tk.Label(header_frame, text="Password Generator | Credential Vault | Security Analytics", bg=HEADER_COLOR, fg="#D6E4F5", font=("Segoe UI", 10)).pack()
+
+        main_frame = ttk.Frame(self.root, padding=18, style="App.TFrame")
+        main_frame.pack(fill="both", expand=True)
+
+        # Generator Frame
+        generator_frame = tk.LabelFrame(main_frame, text="  Password Generator  ", font=("Segoe UI", 10, "bold"), bg=CARD_COLOR, fg=TEXT_COLOR, padx=15, pady=12, bd=1, relief="solid")
+        generator_frame.pack(fill="x", pady=(0, 15))
+
+        settings_frame = ttk.Frame(generator_frame)
+        settings_frame.pack(fill="x", pady=(0, 10))
+        ttk.Label(settings_frame, text="Length:").pack(side="left")
+        ttk.Spinbox(settings_frame, from_=8, to=32, textvariable=self.password_length, width=5).pack(side="left", padx=(8, 20))
+        ttk.Checkbutton(settings_frame, text="Lowercase", variable=self.use_lowercase).pack(side="left", padx=5)
+        ttk.Checkbutton(settings_frame, text="Uppercase", variable=self.use_uppercase).pack(side="left", padx=5)
+        ttk.Checkbutton(settings_frame, text="Numbers", variable=self.use_numbers).pack(side="left", padx=5)
+        ttk.Checkbutton(settings_frame, text="Symbols", variable=self.use_symbols).pack(side="left", padx=5)
+
+        output_frame = ttk.Frame(generator_frame)
+        output_frame.pack(fill="x")
+        ttk.Label(output_frame, text="Generated Password:").pack(side="left")
+        ttk.Entry(output_frame, textvariable=self.generated_password, width=32).pack(side="left", padx=(8, 10))
+        ttk.Button(output_frame, text="Generate Password", style="Primary.TButton", command=self.generate_password).pack(side="left")
+
+        strength_frame = ttk.Frame(generator_frame)
+        strength_frame.pack(fill="x", pady=(10, 0))
+        self.strength_label = ttk.Label(strength_frame, textvariable=self.password_strength, font=("Segoe UI", 9, "bold"))
+        self.strength_label.pack(anchor="w", pady=(0, 3))
+        self.strength_progress = ttk.Progressbar(strength_frame, length=400, mode="determinate")
+        self.strength_progress.pack(fill="x")
+
+        # Form Frame
+        form_frame = tk.LabelFrame(main_frame, text="  Save Credential to Vault  ", font=("Segoe UI", 10, "bold"), bg=CARD_COLOR, fg=TEXT_COLOR, padx=15, pady=12, bd=1, relief="solid")
+        form_frame.pack(fill="x", pady=(0, 15))
+
+        inputs_frame = ttk.Frame(form_frame)
+        inputs_frame.pack(fill="x")
+
+        ttk.Label(inputs_frame, text="Account Name:").grid(row=0, column=0, sticky="w", pady=4)
+        ttk.Entry(inputs_frame, textvariable=self.account_name, width=24).grid(row=0, column=1, sticky="w", padx=(5, 20), pady=4)
+
+        ttk.Label(inputs_frame, text="Username/Email:").grid(row=0, column=2, sticky="w", pady=4)
+        ttk.Entry(inputs_frame, textvariable=self.username_email, width=28).grid(row=0, column=3, sticky="w", padx=(5, 0), pady=4)
+
+        ttk.Label(inputs_frame, text="Password:").grid(row=1, column=0, sticky="w", pady=4)
+        ttk.Entry(inputs_frame, textvariable=self.credential_password, width=24).grid(row=1, column=1, sticky="w", padx=(5, 20), pady=4)
+
+        ttk.Label(inputs_frame, text="Category:").grid(row=1, column=2, sticky="w", pady=4)
+        categories = ["Email", "Work", "Social", "Banking", "Other"]
+        ttk.Combobox(inputs_frame, textvariable=self.credential_category, values=categories, state="readonly", width=25).grid(row=1, column=3, sticky="w", padx=(5, 0), pady=4)
+
+        ttk.Button(form_frame, text="Save Credential to Vault", style="Success.TButton", command=self.save_credential).pack(anchor="e", pady=(10, 0))
+
+        # Vault Table Frame
+        vault_frame = tk.LabelFrame(main_frame, text="  Stored Credentials Vault  ", font=("Segoe UI", 10, "bold"), bg=CARD_COLOR, fg=TEXT_COLOR, padx=15, pady=12, bd=1, relief="solid")
+        vault_frame.pack(fill="both", expand=True)
+
+        columns = ("id", "platform", "username", "password", "category", "strength", "created_date")
+        self.credentials_table = ttk.Treeview(vault_frame, columns=columns, show="headings", height=6)
+        self.credentials_table.heading("id", text="ID")
+        self.credentials_table.heading("platform", text="Account Name")
+        self.credentials_table.heading("username", text="Username/Email")
+        self.credentials_table.heading("password", text="Password")
+        self.credentials_table.heading("category", text="Category")
+        self.credentials_table.heading("strength", text="Strength")
+        self.credentials_table.heading("created_date", text="Created Date")
+
+        self.credentials_table.column("id", width=40, anchor="center")
+        self.credentials_table.column("platform", width=140)
+        self.credentials_table.column("username", width=180)
+        self.credentials_table.column("password", width=100, anchor="center")
+        self.credentials_table.column("category", width=100, anchor="center")
+        self.credentials_table.column("strength", width=100, anchor="center")
+        self.credentials_table.column("created_date", width=110, anchor="center")
+        self.credentials_table.pack(fill="both", expand=True, side="left")
+
+        scrollbar = ttk.Scrollbar(vault_frame, orient="vertical", command=self.credentials_table.yview)
+        self.credentials_table.configure(yscrollcommand=scrollbar.set)
+        scrollbar.pack(side="right", fill="y")
+
+        # Action Buttons
+        actions_frame = ttk.Frame(main_frame)
+        actions_frame.pack(fill="x", pady=(10, 0))
+        ttk.Button(actions_frame, text="Reveal Selected Password", command=self.reveal_password).pack(side="left", padx=(0, 10))
+        ttk.Button(actions_frame, text="Delete Selected Credential", style="Danger.TButton", command=self.delete_record).pack(side="left", padx=(0, 10))
+        ttk.Button(actions_frame, text="View Security Analytics", style="Analytics.TButton", command=self.plot_analytics).pack(side="right")
+
     def generate_password(self):
-        """Generate random high-entropy password based on selected criteria."""
+        """Generate random password based on selected character sets."""
         try:
             length = int(self.password_length.get())
         except ValueError:
@@ -630,7 +587,7 @@ class PassVaultApp:
         self.calculate_strength(password)
 
     def calculate_strength(self, password):
-        """Evaluate password length and complexity score."""
+        """Evaluate rule-based password complexity score."""
         score = 0
         if len(password) >= 8:
             score += 1
@@ -645,7 +602,7 @@ class PassVaultApp:
         if any(char in string.punctuation for char in password):
             score += 1
 
-        if score < 3:
+        if score <= 2:
             strength = "Weak"
             progress_value = 33
             style_name = "Weak.Horizontal.TProgressbar"
@@ -664,7 +621,7 @@ class PassVaultApp:
         return strength
 
     def save_credential(self):
-        """Encode password and save new credential to MySQL database."""
+        """Encode password string with Base64 and insert record into MySQL."""
         if not self.account_name.get().strip() or not self.username_email.get().strip():
             messagebox.showwarning("Input Required", "Fill in Account Name and Username/Email.")
             return
@@ -706,7 +663,7 @@ class PassVaultApp:
                 connection.close()
 
     def load_credentials(self):
-        """Fetch records from MySQL and populate Treeview table."""
+        """Query records from MySQL and update Treeview."""
         for row in self.credentials_table.get_children():
             self.credentials_table.delete(row)
 
@@ -732,8 +689,68 @@ class PassVaultApp:
             if connection is not None and connection.is_connected():
                 connection.close()
 
+    def reveal_password(self):
+        """Decode Base64 password representation for selected row."""
+        selected_items = self.credentials_table.selection()
+        if not selected_items:
+            messagebox.showwarning("No Selection", "Select a credential record first.")
+            return
+
+        record_id = self.credentials_table.item(selected_items[0], "values")[0]
+
+        connection = None
+        try:
+            connection = mysql.connector.connect(**DB_CONFIG)
+            query = "SELECT encrypted_password FROM credentials WHERE id = %s"
+            cursor = connection.cursor()
+            cursor.execute(query, (record_id,))
+            record = cursor.fetchone()
+            cursor.close()
+
+            if record:
+                encoded_password = record[0]
+                password = base64.b64decode(encoded_password).decode("utf-8")
+                messagebox.showinfo(
+                    "Decoded Password",
+                    "Educational Demonstration Notice: Passwords are Base64 encoded.\n\n"
+                    f"Decoded Password: {password}"
+                )
+        except mysql.connector.Error as error:
+            messagebox.showerror("Database Error", f"Could not retrieve password:\n{error}")
+        finally:
+            if connection is not None and connection.is_connected():
+                connection.close()
+
+    def delete_record(self):
+        """Delete selected credential after confirmation."""
+        selected_items = self.credentials_table.selection()
+        if not selected_items:
+            messagebox.showwarning("No Selection", "Select a credential record first.")
+            return
+
+        record_id = self.credentials_table.item(selected_items[0], "values")[0]
+
+        if not messagebox.askyesno("Confirm Delete", "Are you sure you want to delete this credential?"):
+            return
+
+        connection = None
+        try:
+            connection = mysql.connector.connect(**DB_CONFIG)
+            query = "DELETE FROM credentials WHERE id = %s"
+            cursor = connection.cursor()
+            cursor.execute(query, (record_id,))
+            connection.commit()
+            cursor.close()
+            messagebox.showinfo("Deleted", "Credential deleted successfully.")
+            self.load_credentials()
+        except mysql.connector.Error as error:
+            messagebox.showerror("Database Error", f"Could not delete credential:\n{error}")
+        finally:
+            if connection is not None and connection.is_connected():
+                connection.close()
+
     def plot_analytics(self):
-        """Aggregate data with Pandas and render Matplotlib analytics charts."""
+        """Process data with Pandas and render Matplotlib charts."""
         connection = None
         try:
             connection = mysql.connector.connect(**DB_CONFIG)
@@ -781,74 +798,61 @@ if __name__ == "__main__":
 
 ---
 
-## 20. TESTING AND VALIDATION (TEST CASES)
-
-The application was subjected to systematic black-box and boundary testing to ensure functional stability:
-
-| Test ID | Category | Scenario / Action | Input Provided | Expected Result | Result |
-| :---: | :--- | :--- | :--- | :--- | :---: |
-| **TC-01** | Generator | Valid Password Generation | Length: `16`, All Checkboxes Checked | 16-character string containing upper, lower, digits, and symbols generated. | **PASS** |
-| **TC-02** | Generator | Unchecked Character Set | All Checkboxes Unchecked | Warning Dialog: *"Select at least one character set."* | **PASS** |
-| **TC-03** | Strength | Weak Password Test | `"123456"` | Progress Bar displays Red (*Weak*, Score < 3). | **PASS** |
-| **TC-04** | Strength | Strong Password Test | `"P@ssw0rd#2026!Secure"` | Progress Bar displays Green (*Strong*, Score 6/6). | **PASS** |
-| **TC-05** | Validation| Blank Form Submission | Account Name: `""`, Username: `""` | Warning Dialog: *"Input Required - Fill in mandatory fields."* | **PASS** |
-| **TC-06** | Database | Successful Record Insertion| Account: `"GitHub"`, Category: `"Work"`| Record inserted into MySQL, Treeview table refreshed with new row. | **PASS** |
-| **TC-07** | Privacy | Data Masking Test | View Vault Table | Password column displays `********` for all rows. | **PASS** |
-| **TC-08** | Reveal | Decryption Modal Test | Select row & click *Reveal Password* | Modal popup displays decoded Base64 password string accurately. | **PASS** |
-| **TC-09** | Database | DB Service Failure Test | Shutdown MySQL Service | Graceful Error Popup: *"Could not load credentials. Check MySQL settings."* | **PASS** |
-| **TC-10** | Analytics| Empty Database Analytics | Click *View Security Analytics* (0 Rows) | Info Dialog: *"Add credentials before viewing analytics."* | **PASS** |
-
----
-
-## 21. RESULTS AND OUTCOMES
+## 14. RESULTS AND OUTCOMES
 
 The development of **PassVault** yielded the following successful outcomes:
-1. **Functional Password Generator:** Successfully generates randomized, high-entropy password strings across user-defined lengths (8 to 32 characters).
-2. **Dynamic Security Evaluator:** Accurately computes character complexity scores and provides immediate visual feedback.
-3. **Reliable SQL Integration:** Successfully connects to MySQL Server (`passvault_db`), executing parameterized SQL queries to store and retrieve records cleanly.
-4. **Data Privacy Protection:** Ensures sensitive passwords are masked (`********`) in public table views while offering authorized single-click revealing.
+1. **Functional Password Generator:** Successfully generates customizable random passwords across user-defined lengths (8 to 32 characters).
+2. **Rule-Based Complexity Evaluator:** Accurately computes character complexity scores (0 to 6 points) and provides immediate visual feedback.
+3. **Reliable SQL Integration:** Successfully connects to MySQL Server (`passvault_db`), executing parameterized SQL statements to store and retrieve records cleanly.
+4. **Data Masking & Privacy:** Ensures sensitive passwords are masked (`********`) in public table views while offering single-click on-demand Base64 decoding.
 5. **Data Analytics Dashboard:** Integrates `Pandas` and `Matplotlib` to render informative, real-time bar and pie charts representing vault demographics.
 
 ---
 
-## 22. LIMITATIONS
+## 15. LIMITATIONS
 
-While PassVault fulfills all core requirements of a desktop credential manager, the following limitations exist:
-1. **Demonstration Encoding:** PassVault utilizes Base64 encoding for educational storage demonstration. Base64 is representation encoding and does not provide military-grade cryptographic protection (such as AES-256).
+While PassVault fulfills all core educational requirements of a senior school project, the following limitations exist:
+1. **Demonstration Encoding:** PassVault utilizes Base64 encoding for educational storage demonstration. Base64 is representation encoding and does not provide cryptographic encryption.
 2. **Local Single-User Architecture:** The application connects to a local database (`localhost`) and does not support multi-tenant cloud synchronization.
-3. **Master Password Authentication:** There is currently no master login screen required upon application launch.
+3. **Unauthenticated Master Interface:** There is currently no master login screen required upon application launch.
 
 ---
 
-## 23. FUTURE SCOPE
+## 16. FUTURE SCOPE
 
-To enhance PassVault for commercial or enterprise deployment, the following upgrades are planned:
-1. **AES-256 Fernet Encryption:** Replace Base64 encoding with authenticated AES-256 symmetric encryption utilizing PBKDF2 key derivation.
+To enhance PassVault for production or commercial deployment, the following upgrades are planned:
+1. **Authenticated Cryptographic Encryption:** Replace Base64 encoding with a proper authenticated encryption scheme (such as AES-GCM or Fernet) using PBKDF2 key derivation.
 2. **Master Password Login:** Implement a bcrypt-hashed master login screen to authenticate users before granting access to the vault.
 3. **Browser Extension Integration:** Create Chrome/Firefox extensions to automatically auto-fill stored credentials on web pages.
 4. **Cloud Database Sync:** Add support for encrypted cloud backups via Amazon AWS RDS or Google Cloud SQL.
 
 ---
 
-## 24. CONCLUSION
+## 17. CONCLUSION & LEARNING OUTCOMES
 
-The **PassVault** project successfully demonstrates the integration of Python desktop GUI development (`tkinter`/`ttk`), relational database management (MySQL), algorithmic evaluation, and data visualization (`Pandas`/`Matplotlib`).
+### Conclusion
+The **PassVault** project successfully demonstrates the integration of Python desktop GUI development (`tkinter`/`ttk`), relational database management (MySQL), algorithmic complexity evaluation, and data visualization (`Pandas`/`Matplotlib`).
 
-Through this project, I gained practical hands-on experience in:
-- Object-Oriented Programming (OOP) design patterns in Python.
-- Relational schema modeling and SQL query execution.
-- Defensive programming and error handling.
-- Transforming raw SQL dataset results into meaningful graphical analytics.
-
-PassVault serves as an effective, practical solution for personal password management and cybersecurity awareness.
+### Learning Outcomes
+After completing this project, I gained practical hands-on experience in:
+- Designing desktop User Interfaces using Python's `tkinter` and `ttk` modules.
+- Establishing database pipelines between Python and MySQL using `mysql-connector-python`.
+- Executing parameterized SQL statements (`INSERT`, `SELECT`, `DELETE`) safely.
+- Designing relational database schemas using Primary Key and constraint rules.
+- Applying defensive programming techniques and exception handling (`try-except-finally`).
+- Implementing rule-based algorithmic scoring for password complexity evaluation.
+- Processing SQL result sets into `Pandas` DataFrames and aggregating counts via `value_counts()`.
+- Rendering comparative graphical charts using `Matplotlib`.
+- Distinguishing between data representation encoding (Base64) and cryptographic encryption.
+- Validating user inputs to build robust, reliable software applications.
 
 ---
 
-## 25. BIBLIOGRAPHY & REFERENCES
+## 18. BIBLIOGRAPHY & REFERENCES
 
 1. **Python Official Documentation:** Python Software Foundation. *Tkinter — Python interface to Tcl/Tk*. Available at: https://docs.python.org/3/library/tkinter.html
 2. **MySQL Connector Guide:** Oracle Corporation. *MySQL Connector/Python Developer Guide*. Available at: https://dev.mysql.com/doc/connector-python/en/
 3. **Pandas Documentation:** PyData Development Team. *Pandas: Data Analysis Library*. Available at: https://pandas.pydata.org/
 4. **Matplotlib Documentation:** John D. Hunter et al. *Matplotlib: Visualization with Python*. Available at: https://matplotlib.org/
-5. **CBSE Class 12 Computer Science Curriculum:** Central Board of Secondary Education. *Computer Science (Subject Code 083) Syllabus*.
-6. **NCERT Computer Science Textbook:** National Council of Educational Research and Training. *Database Concepts and SQL Integration with Python*.
+5. **NCERT Computer Science Textbook:** National Council of Educational Research and Training. *Class XII Computer Science (Subject Code 083) Textbook*.
+6. **CBSE Class 12 Computer Science Curriculum:** Central Board of Secondary Education. *Computer Science Practical Examination Guidelines (2026–2027)*.

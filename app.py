@@ -66,6 +66,7 @@ class PassVaultApp:
 		self.username_email = tk.StringVar()
 		self.credential_password = tk.StringVar()
 		self.credential_category = tk.StringVar(value="Other")
+		self.database_available = True
 
 		self.configure_styles()
 		self.create_interface()
@@ -316,12 +317,13 @@ class PassVaultApp:
 
 		button_frame = ttk.Frame(credential_frame)
 		button_frame.grid(row=0, column=2, rowspan=4, padx=(20, 0))
-		ttk.Button(
+		self.save_button = ttk.Button(
 			button_frame,
 			text="Save Credential",
 			command=self.save_credential,
 			style="Success.TButton",
-		).pack(fill="x", pady=3)
+		)
+		self.save_button.pack(fill="x", pady=3)
 		ttk.Button(
 			button_frame,
 			text="Clear Form",
@@ -412,30 +414,33 @@ class PassVaultApp:
 
 		action_frame = ttk.Frame(records_frame)
 		action_frame.pack(anchor="e", pady=(10, 0))
-		ttk.Button(
+		self.reveal_button = ttk.Button(
 			action_frame,
 			text="Reveal Password",
 			command=self.reveal_password,
 			style="Primary.TButton",
-		).pack(side="left", padx=3)
-		ttk.Button(
+		)
+		self.reveal_button.pack(side="left", padx=3)
+		self.delete_button = ttk.Button(
 			action_frame,
 			text="Delete Record",
 			command=self.delete_record,
 			style="Danger.TButton",
-		).pack(side="left", padx=3)
+		)
+		self.delete_button.pack(side="left", padx=3)
 		ttk.Button(
 			action_frame,
 			text="Refresh Table",
 			command=self.load_credentials,
 			style="Muted.TButton",
 		).pack(side="left", padx=3)
-		ttk.Button(
+		self.analytics_button = ttk.Button(
 			action_frame,
 			text="View Analytics",
 			command=self.plot_analytics,
 			style="Analytics.TButton",
-		).pack(side="left", padx=3)
+		)
+		self.analytics_button.pack(side="left", padx=3)
 
 		self.status_label = tk.Label(
 			self.root,
@@ -448,7 +453,32 @@ class PassVaultApp:
 			pady=4,
 		)
 		self.status_label.pack(fill="x", side="bottom")
-		self.load_credentials()
+		self.load_credentials(show_error=False)
+
+	def set_database_controls_state(self, enabled):
+		"""Enable or disable database-dependent controls."""
+		self.database_available = enabled
+		state = "normal" if enabled else "disabled"
+		for control in (
+			self.save_button,
+			self.reveal_button,
+			self.delete_button,
+			self.analytics_button,
+		):
+			control.configure(state=state)
+
+	def require_database_connection(self, action_text):
+		"""Ensure database is available before performing an action."""
+		if self.database_available:
+			return True
+		if self.load_credentials(show_error=False):
+			return True
+		messagebox.showwarning(
+			"Database Not Connected",
+			f"Cannot {action_text} right now.\n\n"
+			"Check MySQL settings, start the MySQL service, and click Refresh Table.",
+		)
+		return False
 
 	def generate_password(self):
 		"""Generate a password using the selected character categories."""
@@ -496,6 +526,8 @@ class PassVaultApp:
 
 		password = "".join(password_characters)
 		self.generated_password.set(password)
+		if not self.credential_password.get():
+			self.credential_password.set(password)
 		self.update_strength_display(password)
 		self.status_label.configure(text="Password generated successfully.")
 
@@ -562,6 +594,9 @@ class PassVaultApp:
 
 	def save_credential(self):
 		"""Validate and save the credential form in MySQL."""
+		if not self.require_database_connection("save a credential"):
+			return
+
 		if not self.account_name.get().strip():
 			messagebox.showerror("Missing Account", "Enter an account or platform name.")
 			return
@@ -631,7 +666,7 @@ class PassVaultApp:
 		self.credential_password.set("")
 		self.credential_category.set("Other")
 
-	def load_credentials(self):
+	def load_credentials(self, show_error=True):
 		"""Load masked credential records from MySQL into the table."""
 		for row in self.credentials_table.get_children():
 			self.credentials_table.delete(row)
@@ -670,16 +705,29 @@ class PassVaultApp:
 			if records:
 				self.empty_table_label.place_forget()
 			else:
+				self.empty_table_label.configure(
+					text="No credentials saved yet\nSave your first credential to get started",
+				)
 				self.empty_table_label.place(relx=0.5, rely=0.5, anchor="center")
+			self.set_database_controls_state(True)
 			self.status_label.configure(
 				text=f"Credential table refreshed: {len(records)} record(s)."
 			)
+			return True
 		except mysql.connector.Error as error:
-			messagebox.showerror(
-				"Database Error",
-				f"Could not load credentials. Check MySQL settings and ensure "
-				f"the table exists.\n\nDetails: {error}",
+			self.set_database_controls_state(False)
+			self.empty_table_label.configure(
+				text="Database not connected\nCheck MySQL setup and click Refresh Table",
 			)
+			self.empty_table_label.place(relx=0.5, rely=0.5, anchor="center")
+			self.status_label.configure(text="Database unavailable. Credential actions are disabled.")
+			if show_error:
+				messagebox.showerror(
+					"Database Error",
+					f"Could not load credentials. Check MySQL settings and ensure "
+					f"the table exists.\n\nDetails: {error}",
+				)
+			return False
 		finally:
 			if connection is not None and connection.is_connected():
 				connection.close()
@@ -696,6 +744,9 @@ class PassVaultApp:
 
 	def reveal_password(self):
 		"""Decode and display the selected password for classroom demonstration."""
+		if not self.require_database_connection("reveal a password"):
+			return
+
 		record_id = self.get_selected_record_id()
 		if record_id is None:
 			return
@@ -730,6 +781,9 @@ class PassVaultApp:
 
 	def delete_record(self):
 		"""Delete the selected credential after user confirmation."""
+		if not self.require_database_connection("delete a record"):
+			return
+
 		record_id = self.get_selected_record_id()
 		if record_id is None:
 			return
@@ -760,6 +814,9 @@ class PassVaultApp:
 
 	def plot_analytics(self):
 		"""Load credential data with Pandas and display security charts."""
+		if not self.require_database_connection("view analytics"):
+			return
+
 		connection = None
 		try:
 			connection = mysql.connector.connect(**DB_CONFIG)

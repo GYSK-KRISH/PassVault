@@ -171,6 +171,7 @@ PassVault/
 | **`Access denied for user 'root'@'localhost'`** | Incorrect MySQL root password. | Run `python test_connection.py` to test your password interactively. |
 | **`Unknown database 'passvault_db'`** | Database script not executed. | Open `database.sql` in MySQL Workbench and click the execute lightning bolt. |
 | **`Can't connect to MySQL server`** | MySQL Service is stopped. | Start the MySQL service from Windows Services or MySQL Workbench. |
+| **Credential buttons are disabled** | PassVault cannot connect to MySQL. | Fix MySQL settings/service, then click **Refresh Table** to reconnect and re-enable credential actions. |
 | **Browser tab opens displaying nothing** | Visual Studio Code Live Server extension. | Close the browser tab. PassVault is a **Tkinter Desktop App** (look for the window on your taskbar). |
 
 ---
